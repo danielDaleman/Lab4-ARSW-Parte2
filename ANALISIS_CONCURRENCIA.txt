@@ -1,0 +1,6 @@
+Daniel Moreno
+Brando Prieto
+
+
+El error que puede ocurrir si se utilizan procesos concurrentes como los servicios get, modificar e incluso eliminar
+al mismo se van a generar inconsistencias. Por lo que abria que sincronizar los recursos en comun de cada proceso.

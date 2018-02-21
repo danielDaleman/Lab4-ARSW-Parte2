@@ -1,6 +1,4 @@
 package edu.eci.arsw.myrestaurant.services;
-
-
 import edu.eci.arsw.myrestaurant.model.Order;
 import edu.eci.arsw.myrestaurant.model.RestaurantProduct;
 import edu.eci.arsw.myrestaurant.beans.BillCalculator;
@@ -8,12 +6,14 @@ import edu.eci.arsw.myrestaurant.model.ProductType;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class RestaurantOrderServicesStub implements RestaurantOrderServices {
 
-    
-    BillCalculator calc = null;
+    @Autowired
+    BillCalculator calc;
 
     public RestaurantOrderServicesStub() {
     }
