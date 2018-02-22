@@ -16,30 +16,33 @@
     <link href="css/cover.css" rel="stylesheet">
   </head>
 
-  <body class="text-center" onload = "loadOrdersList()">
+  <body class="text-center" onload="loadOrdersList()">
+  
+	
 
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
-          <h3 class="masthead-brand">Cover</h3>
+          <!--<h3 class="masthead-brand">Cover</h3>-->
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="#" onClick="loadOrdersList()">Orders</a>
-            <a class="nav-link" href="#" onClick = "addOrder()">New Order</a>
-            <a class="nav-link" href="#" onClick = "removeOrderById(2)" >Delete</a>
+            <a class="nav-link" href="#" onClick="addOrder()">New Order</a>
+			<a class="nav-link" href="#" onClick="removeOrderById(2)">Delete Order</a>
           </nav>
         </div>
-      </header>
-
-      <main role="main" class="inner cover" id="tablas">
-      </main>
+      </header> 
+      
+      <main role="main" class="inner cover" id="tablasActuales">
         
+      </main>
+
       <footer class="mastfoot mt-auto">
         <div class="inner">
-          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+          <p>Restaurant API REST, by <a href="https://github.com/CAPJackie">CAP Jackie</a>.</p>
+		  <h5 class="masthead-brand">You can add an static order<br>by clicking on 'New Order',<br>besides if you click 'Delete Order'<br>the static order added will be<br>removed from the view</h5>
         </div>
       </footer>
     </div>
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -50,6 +53,5 @@
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/OrdersController.js"></script>
-
 
 </body></html>
