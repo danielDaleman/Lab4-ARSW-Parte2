@@ -4,8 +4,8 @@ function addOrder(){
 	var insert = {2:{"orderAmountsMap":{"TOMATE":5,"LECHUGA":3,"POKER":15},"tableNumber":2}};
 	axios.post('/orders', insert)
 		.then(function(){                			
-                        $("#tablasActuales").append("<p id='tag"+2+"'>Order 2</p>");                        
-			$("#tablasActuales").append("<table id='Order"+2+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
+                        $("#tabla").append("<p id='tag"+2+"'>Order 2</p>");                        
+			$("#tabla").append("<table id='Order"+2+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
 			for(map in insert[2].orderAmountsMap){				
 				$("#Order"+2).append("<tbody> <tr> <td>"+map+"</td> <td>"+insert[2].orderAmountsMap[map]+"</td> </tr> </tbody>");
 			}
@@ -34,11 +34,11 @@ function removeOrderById(id){
 	axios.get('/orders')
 		.then(function(result){
 			orders = result.data;
-			$("#tablasActuales").empty();
+			$("#tabla").empty();
 			for(key in orders){
 				//Render the tables
-                                $("#tablasActuales").append("<p id='tag"+key+"'>Order "+key+ "</p>");                                
-				$("#tablasActuales").append("<table id='Order"+key+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
+                                $("#tabla").append("<p id='tag"+key+"'>Order "+key+ "</p>");                                
+				$("#tabla").append("<table id='Order"+key+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
 				for(map in orders[key].orderAmountsMap){
 					//Render the rows
 					$("#Order"+key).append("<tbody> <tr> <td>"+map+"</td> <td>"+orders[key].orderAmountsMap[map]+"</td> </tr> </tbody>");
