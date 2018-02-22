@@ -6,8 +6,8 @@ function addOrder(){
 		.then(function(){                			
                         $("#tabla").append("<p id='tag"+2+"'>Order 2</p>");                        
 			$("#tabla").append("<table id='Order"+2+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
-			for(map in insert[2].orderAmountsMap){				
-				$("#Order"+2).append("<tbody> <tr> <td>"+map+"</td> <td>"+insert[2].orderAmountsMap[map]+"</td> </tr> </tbody>");
+			for(i in insert[2].orderAmountsMap){				
+				$("#Order"+2).append("<tbody> <tr> <td>"+i+"</td> <td>"+insert[2].orderAmountsMap[i]+"</td> </tr> </tbody>");
 			}
 			
 		})
@@ -35,11 +35,11 @@ function removeOrderById(id){
 		.then(function(result){
 			orders = result.data;
 			$("#tabla").empty();
-			for(key in orders){				
-                                $("#tabla").append("<p id='tag"+key+"'>Order "+key+ "</p>");                                
-				$("#tabla").append("<table id='Order"+key+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
-				for(map in orders[key].orderAmountsMap){					
-					$("#Order"+key).append("<tbody> <tr> <td>"+map+"</td> <td>"+orders[key].orderAmountsMap[map]+"</td> </tr> </tbody>");
+			for(i in orders){				
+                                $("#tabla").append("<p id='tag"+i+"'>Order "+i+ "</p>");                                
+				$("#tabla").append("<table id='Order"+i+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
+				for(j in orders[i].orderAmountsMap){					
+					$("#Order"+i).append("<tbody> <tr> <td>"+j+"</td> <td>"+orders[i].orderAmountsMap[j]+"</td> </tr> </tbody>");
 				}
 			}						
 		})
