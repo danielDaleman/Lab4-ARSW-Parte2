@@ -10,53 +10,29 @@
     <title>Cover Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="Cover%20Template%20for%20Bootstrap_files/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="Cover%20Template%20for%20Bootstrap_files/cover.css" rel="stylesheet">
+    <link href="css/cover.css" rel="stylesheet">
   </head>
 
-  <body class="text-center">
+  <body class="text-center" onload = "loadOrderList()">
 
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">Cover</h3>
           <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="http://localhost:8080/orders/1">Orders</a>
-            <a class="nav-link" href="#">New order</a>
+            <a class="nav-link active" href="#" onClick="loadOrdersList()">Orders</a>
+            <a class="nav-link" href="#" onClick = "addOrder()">New Order</a>
+            <a class="nav-link" href="#" onClick = "removeOrderById(2)" >Delete</a>
           </nav>
         </div>
       </header>
 
-      <table class="table table-dark">
-          <thead>
-            <tr>
-              <th scope="col">Productt</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Pizza</th>
-              <td>3</td>
-              <td>10000</td>
-            </tr>
-            <tr>
-              <th scope="row">HOTDOG</th>
-              <td>1</td>
-              <td>$3000</td>
-            </tr>
-            <tr>
-              <th scope="row">COKE</th>
-              <td>4</td>
-              <td>$1300</td>
-            </tr>
-          </tbody>
-        </table>
-
+      <main role="main" class="inner cover" id="tablas">
+      </main>
+        
       <footer class="mastfoot mt-auto">
         <div class="inner">
           <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
@@ -68,10 +44,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="Cover%20Template%20for%20Bootstrap_files/jquery-3.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/jquery-3.js"> <!--integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"--></script>
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="Cover%20Template%20for%20Bootstrap_files/popper.js"></script>
-    <script src="Cover%20Template%20for%20Bootstrap_files/bootstrap.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/OrdersController.js"></script>
 
 
 </body></html>
