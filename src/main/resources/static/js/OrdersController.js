@@ -15,6 +15,8 @@ var table = [{
 	  				   ]
             }];
 
+orders = undefined;
+
 function addOrder(){	
     var datos = {1:{"orderAmountsMap":{"HOTDOG":10,"HAMBURGUER":20,"BEER":40},"tableNumber":2}};
     axios.post('/orders',insert)
