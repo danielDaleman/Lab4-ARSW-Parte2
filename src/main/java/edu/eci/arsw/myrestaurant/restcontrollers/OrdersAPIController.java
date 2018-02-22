@@ -61,16 +61,14 @@ public class OrdersAPIController {
     
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getOrders(){
+        Gson gson = new Gson();
         Map<String, Order> map = new HashMap<>();
-        Set<Integer> keys = ros.getTablesWithOrders();
+        Set<Integer> keys = rs.getTablesWithOrders();
         keys.forEach((i) -> {
-            try {
-                map.put(Integer.toString(i), ros.getTableOrder(i));
-            } catch (OrderServicesException ex) {
-                Logger.getLogger(OrdersAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });               
-        String mapToJson = g.toJson(map);
+            map.put(Integer.toString(i), rs.getTableOrder(i));
+        });
+            
+        String mapToJson = gson.toJson(map);
         return new ResponseEntity<>(mapToJson,HttpStatus.OK);
     }
     
