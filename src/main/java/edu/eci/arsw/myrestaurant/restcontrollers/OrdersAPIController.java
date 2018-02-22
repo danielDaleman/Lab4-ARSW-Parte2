@@ -59,6 +59,23 @@ public class OrdersAPIController {
     @Autowired
     RestaurantOrderServices rs;
     
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> getOrders(){
+        Map<String, Order> map = new HashMap<>();
+        Set<Integer> keys = ros.getTablesWithOrders();
+        keys.forEach((i) -> {
+            try {
+                map.put(Integer.toString(i), ros.getTableOrder(i));
+            } catch (OrderServicesException ex) {
+                Logger.getLogger(OrdersAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });               
+        String mapToJson = g.toJson(map);
+        return new ResponseEntity<>(mapToJson,HttpStatus.OK);
+    }
+    
+    
+    
     //PARTE I    
     @RequestMapping(method = RequestMethod.GET, path = "/{idTable}")
     public ResponseEntity<?> getRecursoOrders(@PathVariable String idTable){
