@@ -4,8 +4,8 @@ function addOrder(){
 	var insert = {2:{"orderAmountsMap":{"TOMATE":5,"LECHUGA":3,"POKER":15},"tableNumber":2}};
 	axios.post('/orders', insert)
 		.then(function(){                			
-                        //$("#tabla").append("<p id='tag"+2+"'>Order 2</p>");                        
-			$("#tabla").append("<font id='tag"+2+"' color='#0000ff' >Order 2</font>");                        
+                        $("#tabla").append("<p id='tag"+2+"'>Order 2</p>");                        
+			//$("#tabla").append("<font id='tag"+2+"' color='#0000ff' >Order 2</font>");                        
 			$("#tabla").append("<table id='Order"+2+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
 			for(i in insert[2].orderAmountsMap){				
 				$("#Order"+2).append("<tbody> <tr> <td>"+i+"</td> <td>"+insert[2].orderAmountsMap[i]+"</td> </tr> </tbody>");
