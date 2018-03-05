@@ -14,8 +14,14 @@ var RestControllerModule = (function () {
     // todo implement
   };
 
-  var deleteOrder = function (orderId, callback) {
-    // todo implement
+  var deleteOrder = function (orderId, callback){    
+	axios.delete('/orders/'+orderId)
+	.then(function(){                        
+		callback.onSuccess();
+	})
+	.catch(function(error){
+		callback.onFailed(error);
+	});		
   };
 
   var createOrder = function (order, callback) {

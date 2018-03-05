@@ -37,7 +37,7 @@ function removeOrderById(id){
 			orders = result.data;
 			$("#tabla").empty();
 			for(i in orders){				
-                                $("#tabla").append("<p id='tag"+i+"'>Order "+i+ "</p>");                                
+                $("#tabla").append("<p id='tag"+i+"'>Order "+i+ "</p>");                                
 				$("#tabla").append("<table id='Order"+i+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
 				for(j in orders[i].orderAmountsMap){					
 					$("#Order"+i).append("<tbody> <tr> <td>"+j+"</td> <td>"+orders[i].orderAmountsMap[j]+"</td> </tr> </tbody>");
