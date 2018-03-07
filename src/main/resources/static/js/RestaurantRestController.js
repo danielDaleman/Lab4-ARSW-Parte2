@@ -18,8 +18,14 @@ var RestControllerModule = (function () {
   };
 
   var createOrder = function (order, callback) {
-    // todo implement
-  };    
+    axios.post('/orders', order)
+     .then(function(){
+		 callback.onSuccess(order.data);
+	 })
+	 .catch(function(error){
+		callback.onFiled(error);
+	 }); 
+  }; 
    
   var showOrder = function(orderId, callback){		
 	axios.get('/orders/'+orderId)
@@ -28,9 +34,8 @@ var RestControllerModule = (function () {
 		})
 		.catch(function(error){
 			callback.onFailed(error);
-		});			  
-};
-
+		});
+ };  
 	
 
   return {

@@ -22,7 +22,7 @@ var OrdersControllerModule = (function () {
   };
 
   var selectOrder = function (){
-	console.log("SI ENTRO");
+	
 	var index = document.getElementById("orders");
     var selected = index.options[index.selectedIndex].value;	  	
 	RestControllerModule.showOrder( 
@@ -31,9 +31,9 @@ var OrdersControllerModule = (function () {
 		onSuccess : function(order){
 			currentOrder = order;
 			$("#tableOrderSelected").empty();
-			$("#tableOrderSelected").append("<thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
+			$("#tableOrderSelected").append("<thead> <tr> <th scope='col'>Item</th> <th scope='col'>Quantity</th> <th scope='col'> </th> <th scope='col'> </th> </tr> </thead>");
 			for(i in order[selected].orderAmountsMap){
-				$("#tableOrderSelected").append("<tbody> <tr> <td> <input id='item' type='text' value='"+i+"'></td> <td> <input id='item' type='text' value='"+order[selected].orderAmountsMap[i]+"'></td>");
+				$("#tableOrderSelected").append("<tbody> <tr> <td> <input id='item' type='text' value='"+i+"'></td> <td> <input id='item' type='text' value='"+order[selected].orderAmountsMap[i]+"'></td>  <td> <a class='nav-link' href='#' onClick=''>Delete</a> </td> <td> <a class='nav-link' href='#' onClick=''>Update</a> </td>");
 			}		
 		},
 		onFailed : function(error){
@@ -43,6 +43,10 @@ var OrdersControllerModule = (function () {
 	});		  
   };
   
+  var newOrder = function(){	
+	  console.log("ENTRO");
+  };
+  
   var loadSelectOrders = function(){
 	RestControllerModule.getOrders(
 	{
@@ -50,8 +54,7 @@ var OrdersControllerModule = (function () {
 			$('#orders').empty();
 			for(i in orders){
 				$('#orders').append("<option value='"+i+"'>Table "+i);
-			}
-			
+			}			
 		}					
 	}); 
 	  
@@ -82,7 +85,8 @@ var OrdersControllerModule = (function () {
     deleteOrderItem: deleteOrderItem,
     addItemToOrder: addItemToOrder,
 	selectOrder: selectOrder,
-	loadSelectOrders: loadSelectOrders
+	loadSelectOrders: loadSelectOrders,
+	newOrder : newOrder
   };
 
 })();
