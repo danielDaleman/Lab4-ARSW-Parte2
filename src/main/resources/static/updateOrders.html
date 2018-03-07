@@ -16,7 +16,7 @@
     <link href="css/cover.css" rel="stylesheet">
   </head>
 
-	<body class="text-center" onload="">
+	<body class="text-center" onload="OrdersControllerModule.loadSelectOrders()">
 
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
       <header class="masthead mb-auto">
@@ -25,35 +25,14 @@
         </div>
       </header>       	  	  	  
 	  
-	<form action="/action_page.php">
-	<select name="cars">
-		<option value="volvo">Volvo</option>
-		<option value="saab">Saab</option>
-		<option value="fiat" selected>Fiat</option>
-		<option value="audi">Audi</option>
-	</select>
-	<br><br>
-	<input type="submit">
-</form>
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+	<div>
+        <select id="orders" onchange="OrdersControllerModule.selectOrder()"></select>
+    
+	
+	<table id="tableOrderSelected" class="table table-dark">
+	</div>
+	
+	</form>
       <footer class="mastfoot mt-auto">
         <div class="inner">
           <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>

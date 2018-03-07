@@ -118,14 +118,15 @@ public class OrdersAPIController {
     //Parte IV
     
     @RequestMapping(method = RequestMethod.PUT, path = "{idTable}")
-    public ResponseEntity<?> agregarPlato(@PathVariable String idTable, @RequestBody String plato){
-        
+    public ResponseEntity<?> agregarPlato(@PathVariable String idTable, @RequestBody String plato){        
         Gson gson = new Gson();
         Type t = new TypeToken<Map<String, String>>(){}.getType();
         Map<String, String> mapa = gson.fromJson(plato, t);
+        
         for(String m : mapa.keySet()){            
             rs.getTableOrder(Integer.parseInt(idTable)).addDish(m, Integer.parseInt(mapa.get(m)));            
         }        
+        
         return new ResponseEntity<>(HttpStatus.OK);                                                                                        
         
         

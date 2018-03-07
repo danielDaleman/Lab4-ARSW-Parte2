@@ -1,5 +1,7 @@
 var OrdersControllerModule = (function () {
-  orders = undefined;
+	
+  var currentOrder;
+  
   var showOrdersByTable = function () {
 	RestControllerModule.getOrders(
 	{onSuccess : function(orders){				
@@ -19,44 +21,55 @@ var OrdersControllerModule = (function () {
 	});															
   };
 
+  var selectOrder = function (){
+	console.log("SI ENTRO");
+	var index = document.getElementById("orders");
+    var selected = index.options[index.selectedIndex].value;	  	
+	RestControllerModule.showOrder( 
+		selected,
+		{
+		onSuccess : function(order){
+			currentOrder = order;
+			$("#tableOrderSelected").empty();
+			$("#tableOrderSelected").append("<thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
+			for(i in order[selected].orderAmountsMap){
+				$("#tableOrderSelected").append("<tbody> <tr> <td> <input id='item' type='text' value='"+i+"'></td> <td> <input id='item' type='text' value='"+order[selected].orderAmountsMap[i]+"'></td>");
+			}		
+		},
+		onFailed : function(error){
+			console.log(error);
+			console.log("There is a problem with our servers. We apologize for the inconvince, please try again later");						
+		}					
+	});		  
+  };
+  
+  var loadSelectOrders = function(){
+	RestControllerModule.getOrders(
+	{
+		onSuccess : function(orders){
+			$('#orders').empty();
+			for(i in orders){
+				$('#orders').append("<option value='"+i+"'>Table "+i);
+			}
+			
+		}					
+	}); 
+	  
+  };
+   
+  
   var updateOrder = function () {
     // todo implement
   };
 
   var deleteOrderItem = function (id) {
-    RestControllerModule.deleteOrder(
-	{onSuccess : function(){
-		document.getElementById("tag"+id).remove();
-		document.getElementById("Order"+id).remove();		
-	},
-	onFailed : function(error){
-		console.log(error);
-		console.log("There is a problem with our servers. We apologize for the inconvince, please try again later");				
-	}
-		
-		
-	
-	                  
-    
+    						                      
   };
 	
-  var addItemToOrder = function (orderId, item) {
-    var insert = {2:{"orderAmountsMap":{"TOMATE":5,"LECHUGA":3,"POKER":15},"tableNumber":2}};
-	axios.post('/orders', insert)
-		.then(function(){                			
-            $("#tabla").append("<p id='tag"+2+"'>Order 2</p>");                        
-			//$("#tabla").append("<font id='tag"+2+"' color='#0000ff' >Order 2</font>");                        
-			$("#tabla").append("<table id='Order"+2+"' class='table table-dark'> <thead> <tr> <th scope='col'>Product</th> <th scope='col'>Quantity</th> </tr> </thead>");
-			for(i in insert[2].orderAmountsMap){				
-				$("#Order"+2).append("<tbody> <tr> <td>"+i+"</td> <td>"+insert[2].orderAmountsMap[i]+"</td> </tr> </tbody>");
-			}
-			
-		})
-		.catch(function(error){
-			console.log(error);
-			errorMessage();
-		});
+  var addItemToOrder = function (orderId, item) {    
   };
+  
+  
   
   function errorMessage(){
 	alert("There is a problem with our servers. We apologize for the inconvince, please try again later");
@@ -67,7 +80,9 @@ var OrdersControllerModule = (function () {
     showOrdersByTable: showOrdersByTable,
     updateOrder: updateOrder,
     deleteOrderItem: deleteOrderItem,
-    addItemToOrder: addItemToOrder
+    addItemToOrder: addItemToOrder,
+	selectOrder: selectOrder,
+	loadSelectOrders: loadSelectOrders
   };
 
 })();
