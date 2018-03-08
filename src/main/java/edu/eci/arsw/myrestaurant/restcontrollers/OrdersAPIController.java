@@ -95,6 +95,7 @@ public class OrdersAPIController {
             for(String st : mapaLlaves){
                 rs.addNewOrderToTable(mapa.get(st));
             }                
+            
             return new ResponseEntity<>(HttpStatus.OK);
 
         }catch (OrderServicesException ex) {
@@ -118,18 +119,16 @@ public class OrdersAPIController {
     //Parte IV
     
     @RequestMapping(method = RequestMethod.PUT, path = "{idTable}")
-    public ResponseEntity<?> agregarPlato(@PathVariable String idTable, @RequestBody String plato){        
-        Gson gson = new Gson();
+    public ResponseEntity<?> agregarPlato(@PathVariable int idTable, @RequestBody Order plato) throws OrderServicesException{        
+        /**Gson gson = new Gson();
         Type t = new TypeToken<Map<String, String>>(){}.getType();
-        Map<String, String> mapa = gson.fromJson(plato, t);
-        
+        Map<String, String> mapa = gson.fromJson(plato, t);               
         for(String m : mapa.keySet()){            
             rs.getTableOrder(Integer.parseInt(idTable)).addDish(m, Integer.parseInt(mapa.get(m)));            
-        }        
-        
-        return new ResponseEntity<>(HttpStatus.OK);                                                                                        
-        
-        
+        }**/        
+        System.out.println("ENTRO ACA");
+        rs.newOrder(plato);
+        return new ResponseEntity<>(HttpStatus.OK);                                                                                                        
     }
     
     @RequestMapping(method = RequestMethod.DELETE, path = "{idTable}")

@@ -22,16 +22,28 @@
       <header class="masthead mb-auto">
         <div class="inner">
           <h3 class="masthead-brand">Update Orders</h3>          
+		  <nav class="nav nav-masthead justify-content-center">            
+            <a class="nav-link" href="/index.html" onClick="">Orders</a>
+		  </nav>
         </div>
       </header>       	  	  	  
 	  
 	<div class="Seleccion">        
+		<h4 class="masthead-brand">Select table</h4>          
+		</br> </br> 
         <select id="orders" onchange="OrdersControllerModule.selectOrder()"></select>   
-        </br>                                 	
-			<p id="newOrder" onchange="OrdersControllerModule.newOrder()"></p>        
-        </br>
-        <table id="tableOrderSelected" class="table table-dark">
+        </br></br></br>                                 	
+		<h4 class="masthead-brand">Add new item</h4>          
+		</br> </br>
+		<form>
+			<input id="newItem" type="text" name="Item Name" placeholder="Item Name"></br>
+            <input id="quantity" type="text" name="Quantity" placeholder="Quantity"></br></br>
+			<button type="button" class="btn" onclick="OrdersControllerModule.addItemToOrder($('#orders').val(),[$('#newItem').val(), $('#quantity').val()])">Add</button></br></br></br>
+        </form>        
+        
 	</div>
+	
+	<table id="tableOrderSelected" class="table table-sm table-inverse">
 	
 	
 	

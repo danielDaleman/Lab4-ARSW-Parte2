@@ -30,4 +30,5 @@ public interface RestaurantOrderServices {
 
     void releaseTable(int tableNumber) throws OrderServicesException;
     
+    void newOrder(Order order) throws OrderServicesException;
 }

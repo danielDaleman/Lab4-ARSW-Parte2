@@ -11,26 +11,42 @@ var RestControllerModule = (function () {
   };
 
   var updateOrder = function (order, callback) {
-    // todo implement
+    axios.put('/orders/'+order.tableNumber, order)
+     .then(function(){
+		//console.log("Intentado hacer put update");
+		callback.onSuccess();
+	 })
+	 .catch(function(error){		 
+		callback.onFailed(error);
+	 });
   };
 
   var deleteOrder = function (orderId, callback){    			
-  };
-
-  var createOrder = function (order, callback) {
-    axios.post('/orders', order)
-     .then(function(){
-		 callback.onSuccess(order.data);
+	axios.delete('/orders/'+ orderId)
+	 .then(function(){
+		callback.onSuccess();		 
 	 })
 	 .catch(function(error){
-		callback.onFiled(error);
+		callback.onFailed(error);	 
+	});  
+  
+  };
+
+  var createOrder = function (order, callback) {	 
+    axios.put('/orders/'+order.tableNumber, order)
+     .then(function(){
+		//console.log("Intentado hacer put create");
+		callback.onSuccess();
+	 })
+	 .catch(function(error){		 
+		callback.onFailed(error);
 	 }); 
   }; 
    
-  var showOrder = function(orderId, callback){		
-	axios.get('/orders/'+orderId)
-		.then(function(order){
-			callback.onSuccess(order.data);
+  var showOrder = function(orderId, callback){			
+	axios.get('/orders/'+orderId)		
+		.then(function(orders){
+			callback.onSuccess(orders.data);			
 		})
 		.catch(function(error){
 			callback.onFailed(error);
